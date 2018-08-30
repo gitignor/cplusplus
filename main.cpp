@@ -1,4 +1,6 @@
 /*
+ *Homework Aleksei Nikiforov TARgv17 (old name 2TARvg)
+ *
  * send home work to aleksandr.bobyrev@tthk.ee
  * домашнее задание:
  *
