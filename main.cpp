@@ -19,6 +19,7 @@
 
 #include "iostream"
 #include "string"
+#include <cmath>
 
 #define TOLERANTS 0.05
 using namespace std;
@@ -39,31 +40,41 @@ int main()
 
     cin >> realWeight;
 
-    float idealWeight = 0;
+    float realWeightForPrint = realWeight; // Приравнял к константе, т.к. при введени строки отличной от "w", "W", "m", "M", к примеру, Man - переменная меняет значение
+
+    float idealWeight;
     char sex; // Объявляем переменную для определения юзера по половому признаку
 
     cout << "What is your sex? Press button 'w' if you are woman or 'm' if you are man" << endl;
     cin >> sex;
-    if (sex == 'm') {
-        idealWeight = height * height * 0.00227;
-    }
-    if (sex == 'w') {
+
+    if ((sex == 'w') || (sex == 'W')) {
         idealWeight = height * height * 0.00222;
+        cout << "\nYou are woman" << endl;
     }
 
-    float minWeight = idealWeight * (1.0 - TOLERANTS) ;
-    float maxWeight = idealWeight * (1.0 + TOLERANTS );
-
-    cout << "Your real weight is " <<realWeight <<" kg and your ideal weight shall be between (" <<minWeight << " - "<< maxWeight <<") kg\n";
-
-    if (realWeight < minWeight) {
-        cout << "Overview: You under ideal weight" << endl;
+    else if ((sex == 'm') || (sex == 'M'))  {
+        idealWeight = height * height * 0.00227;
+        cout << "\nYou are man" << endl;
+    } else {
+        idealWeight = height * height * 0.00227;
+        cout << "\nYou are not human" << endl;
+        printf("Bye!\n");
+        terminate(); // Завершаем процесс, если были указаны не w или n (W,N)
     }
-    if ( (realWeight > minWeight) && (realWeight < maxWeight )){
-         cout << "Overview: You have ideal weight" << endl;
+    float minWeight = idealWeight * (1.0 - TOLERANTS);
+    float maxWeight = idealWeight * (1.0 + TOLERANTS);
+
+    cout << "\nYour real weight is " << realWeightForPrint <<" kg and your ideal weight shall be between (" << minWeight << " - "<< maxWeight <<") kg\n";
+
+    if (realWeightForPrint < minWeight) {
+        cout << "\nOverview: You under ideal weight\n" << endl;
     }
-    if (realWeight > maxWeight) {
-         cout << "Overview: You above ideal weight" << endl;
+    if ( (realWeightForPrint > minWeight) && (realWeightForPrint < maxWeight )){
+         cout << "\nOverview: You have ideal weight\n" << endl;
+    }
+    if (realWeightForPrint > maxWeight) {
+         cout << "\nOverview: You above ideal weight\n" << endl;
     }
 
     return 0;
