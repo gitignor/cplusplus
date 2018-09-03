@@ -57,7 +57,6 @@ int main()
         idealWeight = height * height * 0.00227;
         cout << "\nYou are man" << endl;
     } else {
-        idealWeight = height * height * 0.00227;
         cout << "\nYou are not human" << endl;
         printf("Bye!\n");
         terminate(); // Завершаем процесс, если были указаны не w или n (W,N)
